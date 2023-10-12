@@ -1,50 +1,34 @@
 package test;
 
+import java.util.List;
+
 import main.Ejercicio1;
+import test.Lector.ParejaNumeros;
 
 public class TestEjercicio1 {
 
 	public static void main(String[] args) {
 		
-		toPrint();
+		List<ParejaNumeros> l1 = Lector.leeDatos("./data/PI1Ej1DatosEntrada.txt");
 		
+		//METODO ENUNCIADO (FUNCIONAL)
+		System.out.println("Test ejercicio 1. Metodo ENUNCIADO (FUNCIONAL).");
+		for(int i = 0; i < l1.size(); i++) {
+			System.out.println("Test " + (i + 1) + ": " + Ejercicio1.ejercicio1(l1.get(i).a(), l1.get(i).b()));
+		}
+		
+		//METODO ITERATIVO
+		System.out.println("\nTest ejercicio 1. Metodo ITERATIVO.");
+		for(int i = 0; i < l1.size(); i++) {
+			System.out.println("Test " + (i + 1) + ": " + Ejercicio1.ejercicio1Iter(l1.get(i).a(), l1.get(i).b()));
+		}
+		
+		//METODO RECURSIVO
+		System.out.println("\nTest ejercicio 1. Metodo RECURSIVO.");
+		for(int i = 0; i < l1.size(); i++) {
+			System.out.println("Test " + (i + 1) + ": " + Ejercicio1.ejercicio1Recur(l1.get(i).a(), l1.get(i).b()));
+		}
 	}
 	
-	
-	private static void toPrint() {
-		//PRUEBAS DEL EJERCICIO 1:
-		//Código muestra:
-		String resEjercicio1Muestra1 = Ejercicio1.ejercicio1(2, 30);
-		String resEjercicio1Muestra2 = Ejercicio1.ejercicio1(4, 50);
-		String resEjercicio1Muestra3 = Ejercicio1.ejercicio1(3, 7);
-		
-		//Código iterativo:
-		String resEjercicio1Iter1 = Ejercicio1.ejercicio1Iter(2, 30);
-		String resEjercicio1Iter2 = Ejercicio1.ejercicio1Iter(4, 50); 
-		String resEjercicio1Iter3 = Ejercicio1.ejercicio1Iter(3, 7);
-		
-		//Código recursivo:
-		String resEjercicio1Recur1 = Ejercicio1.ejercicio1Recur(2, 30);
-		String resEjercicio1Recur2 = Ejercicio1.ejercicio1Recur(4, 50); 
-		String resEjercicio1Recur3 = Ejercicio1.ejercicio1Recur(3, 7);
-		
-	
-		System.out.println("Ejercicios resueltos con el método proporcionado de muestra;");
-		System.out.println(resEjercicio1Muestra1);
-		System.out.println(resEjercicio1Muestra2);
-		System.out.println(resEjercicio1Muestra3);
-		
-		System.out.println("\nEjercicios resueltos con el método iterativo;");
-		System.out.println(resEjercicio1Iter1);
-		System.out.println(resEjercicio1Iter2);
-		System.out.println(resEjercicio1Iter3);
-		
-		System.out.println("\nEjercicios resueltos con el método recursivo;");
-		System.out.println(resEjercicio1Recur1);
-		System.out.println(resEjercicio1Recur2);
-		System.out.println(resEjercicio1Recur3);
-		
-		
-	}
-	
+
 }

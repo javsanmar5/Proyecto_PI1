@@ -4,6 +4,14 @@ import java.util.function.UnaryOperator;
 import java.util.stream.*;
 
 public class Ejercicio1 {
+	
+	public record EnteroCadena(Integer a, String s) {
+
+		public static EnteroCadena of(Integer a, String s) {
+			return new EnteroCadena(a, s);
+		}
+		
+	}
 
 	public static String ejercicio1 (Integer varA, Integer varB) {
 		UnaryOperator<EnteroCadena> nx = elem -> 
@@ -52,6 +60,6 @@ public class Ejercicio1 {
 		return res;
 	}
 	
-	
+
 	
 }
