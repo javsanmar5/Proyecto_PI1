@@ -37,6 +37,9 @@ System.out.println("Ejercicio resuelto de forma recursiva no final:");
 		System.out.println(ejercicio2RecursivoF2);
 		System.out.println(ejercicio2RecursivoF3);
 		
+		
+		List<Integer> pruebaJavi = Ejercicio2.ejercicio2RecursivoF(93, 24);
+		System.out.println(pruebaJavi);
 	}
 
 }
