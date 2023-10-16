@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Ejercicio2 {
 	
@@ -36,10 +37,10 @@ public class Ejercicio2 {
 			acum.add(0, a*b);
 		} else if(a>b) {
 			acum.add(0, a);
-			acum = (ejercicio2RecursivoF(a%b, b/2, acum));
+			ejercicio2RecursivoF(a%b, b-1, acum);
 		} else {
 			acum.add(0,b);
-			acum = (ejercicio2RecursivoF(a-2, b/2, acum));
+			ejercicio2RecursivoF(a-2, b/2, acum);
 		}
 		return acum;
 	}
@@ -61,5 +62,38 @@ public class Ejercicio2 {
 		}
 		acum.add(0, a*b);
 		return acum;
+	}
+	
+	
+	//FUNCIONAL	
+	public static record Tupla(List<Integer> l, int a, int b) {
+		public static Tupla first(int a, int b) {
+			return new Tupla(new ArrayList<Integer>(), a, b);
+		}
+		
+		public Tupla next() {
+			if(a > b) {
+				l.add(0, a);
+				return new Tupla(l, a % b, b-1);
+			}else {
+				l.add(0, b);
+				return new Tupla(l, a - 2, b / 2);
+			}
+		}
+		
+		public Boolean esCasoBase() {
+			return a < 2 || b < 2;
+		}
+	}
+	
+	public static List<Integer> ejercicio2Func(int a, int b){
+		Tupla t = Stream.iterate(Tupla.first(a, b), e -> e.next())
+				.filter(e -> e.esCasoBase())
+				.findFirst().get();
+		
+		List<Integer> l = t.l();
+		l.add(0, t.a() * t.b());
+		
+		return l;
 	}
 }
