@@ -1,2 +1,2 @@
-# Proyecto_PI1
+# PI1_javsanmar5
 Primer proyecto de ADDA. Curso 23/24. javsanmar5
