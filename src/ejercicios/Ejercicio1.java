@@ -1,4 +1,4 @@
-package main;
+package ejercicios;
 
 import java.util.function.UnaryOperator;
 import java.util.stream.*;

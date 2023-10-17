@@ -1,8 +1,8 @@
-package test;
+package tests;
 
 import java.util.List;
 
-import main.Ejercicio1;
+import ejercicios.Ejercicio1;
 import us.lsi.streams.Stream2;
 
 public class TestEjercicio1 {
