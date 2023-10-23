@@ -1,34 +1,27 @@
 package tests;
 
-import java.util.List;
-
 import ejercicios.Ejercicio3;
-import us.lsi.streams.Stream2;
 
 public class TestEjercicio3 {
 
 	public static void main(String[] args) {
 		
-		List<String> l3_1A = Stream2.file("./data/PI1Ej3DatosEntrada1A.txt").toList();
-		List<String> l3_1B = Stream2.file("./data/PI1Ej3DatosEntrada1B.txt").toList();
-		List<String> l3_2A = Stream2.file("./data/PI1Ej3DatosEntrada2A.txt").toList();
-		List<String> l3_2B = Stream2.file("./data/PI1Ej3DatosEntrada2B.txt").toList();
-		List<String> l3_3A = Stream2.file("./data/PI1Ej3DatosEntrada3A.txt").toList();
-		List<String> l3_3B = Stream2.file("./data/PI1Ej3DatosEntrada3B.txt").toList();
+		System.out.println("Test ejercicio 3:");
 		
+		for(int i = 1; i <= 3; i++) {
+			String ficheroA = "./ficheros/PI1Ej3DatosEntrada" + i + "A.txt";
+			String ficheroB = "./ficheros/PI1Ej3DatosEntrada" + i + "B.txt";
+			
+			System.out.print("\nMetodo ITERATIVO.		");
+			System.out.println("Test " + i + ": " + Ejercicio3.ejercicio3Iter(ficheroA, ficheroB));
+			
+			System.out.print("Metodo RECURSIVO FINAL.		");
+			System.out.println("Test " + i + ": " + Ejercicio3.ejercicio3RecFinal(ficheroA, ficheroB));
+			
+			System.out.print("Metodo FUNCIONAL.		");
+			System.out.println("Test " + i + ": " + Ejercicio3.ejercicio3Funcional(ficheroA, ficheroB));
+		}
 		
-		//METODO ITERATIVO
-		System.out.println("\nTest ejercicio 3. Metodo ITERATIVO.");
-		System.out.println("Test 1: " + Ejercicio3.ejercicio3Iter(l3_1A, l3_1B));
-		System.out.println("Test 2: " + Ejercicio3.ejercicio3Iter(l3_2A, l3_2B));
-		System.out.println("Test 3: " + Ejercicio3.ejercicio3Iter(l3_3A, l3_3B));
-
-		//METODO RECURSIVO FINAL
-		System.out.println("\nTest ejercicio 3. Metodo RECURSIVO FINAL.");
-		System.out.println("Test 1: " + Ejercicio3.ejercicio3RecFinal(l3_1A, l3_1B));
-		System.out.println("Test 2: " + Ejercicio3.ejercicio3RecFinal(l3_2A, l3_2B));
-		System.out.println("Test 3: " + Ejercicio3.ejercicio3RecFinal(l3_3A, l3_3B));
-
 	}
 
 }

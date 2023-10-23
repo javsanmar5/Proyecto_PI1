@@ -66,7 +66,7 @@ public class Ejercicio2 {
 	
 	
 	//FUNCIONAL	
-	public static record Tupla(List<Integer> l, int a, int b) {
+	private static record Tupla(List<Integer> l, int a, int b) {
 		public static Tupla first(int a, int b) {
 			return new Tupla(new ArrayList<Integer>(), a, b);
 		}

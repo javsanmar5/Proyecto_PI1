@@ -9,25 +9,19 @@ public class TestEjercicio4 {
 
 	public static void main(String[] args) {
 		
-		String path = "./data/PI1Ej4DatosEntrada.txt";
+		String path = "./ficheros/PI1Ej4DatosEntrada.txt";
 		List<ParejaNumeros> l4 = Stream2.file(path).map(TestEjercicio4::parseParejaNumeros).toList();
 
-		//METODO RECURSIVO SIN MEMORIA
-		System.out.println("Test ejercicio 4. Metodo RECURSIVO SIN MEMORIA.");
+		System.out.println("Test ejercicio 4: ");
+		
 		for(int i = 0; i < l4.size(); i++) {
+			System.out.print("\nMetodo RECURSIVO SIN MEMORIA.	");
 			System.out.println("Test " + (i + 1) + ": " + Ejercicio4.ejercicio4RecSinMem(l4.get(i).a(), l4.get(i).b()));
-		}
-				
-		//METODO RECURSIVO CON MEMORIA
-		System.out.println("\nTest ejercicio 4. Metodo RECURSIVO CON MEMORIA.");
-		for(int i = 0; i < l4.size(); i++) {
+					
+			System.out.print("Metodo RECURSIVO CON MEMORIA.	");
 			System.out.println("Test " + (i + 1) + ": " + Ejercicio4.ejercicio4RecConMem(l4.get(i).a(), l4.get(i).b()));
-		}
-		
-		
-		//METODO ITERATIVO IMPERATIVO
-		System.out.println("\nTest ejercicio 4. Metodo ITERATIVO IMPERATIVO.");
-		for(int i = 0; i < l4.size(); i++) {
+			
+			System.out.print("Metodo ITERATIVO IMPERATIVO.	");
 			System.out.println("Test " + (i + 1) + ": " + Ejercicio4.ejercicio4Iter(l4.get(i).a(), l4.get(i).b()));
 		}
 	}

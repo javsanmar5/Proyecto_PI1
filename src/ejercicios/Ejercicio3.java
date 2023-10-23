@@ -1,74 +1,106 @@
 package ejercicios;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
+import us.lsi.streams.Stream2;
 
 public class Ejercicio3 {
 		
 	//METODO ITERATIVO
-	public static List<String> ejercicio3Iter(List<String> a, List<String> b) {
+	public static List<String> ejercicio3Iter(String pathA, String pathB) {
+
+		Iterator<String> it1 = Stream2.file(pathA).iterator();
+		Iterator<String> it2 = Stream2.file(pathB).iterator();
 	    List<String> res = new ArrayList<>();
-	    int i = 0;
 	    
-	    while (i < a.size() || i < b.size()) {
-	        if (i < a.size()) {
-	            res.add(a.get(i));
-	            if ( i + 1 < a.size()) {
-	            	res.add(a.get(i + 1));
+	    while (it1.hasNext() || it2.hasNext()) {
+	        if (it1.hasNext()) {
+	            res.add(it1.next());
+	            if (it1.hasNext()) {
+	            	res.add(it1.next());
 	            }
 	        }
-	        if (i < b.size()) {
-	            res.add(b.get(i));
-	            if ( i + 1 < b.size()) {
-		            res.add(b.get(i + 1));
+	        if (it2.hasNext()) {
+	            res.add(it2.next());
+	            if (it2.hasNext()) {
+	            	res.add(it2.next());
 	            }
 	        }
-	        i += 2;
 	    }
 
 	    return res;
 	}
 	
 	//METODO RECURSIVO FINAL
-	public static List<String> ejercicio3RecFinal(List<String> a, List<String> b){
-		List<String> acum = new ArrayList<>();
-		return ejercicio3RecFinal(acum, 0, a , b);
+	public static List<String> ejercicio3RecFinal(String pathA, String pathB){
+		Iterator<String> it1 = Stream2.file(pathA).iterator();
+		Iterator<String> it2 = Stream2.file(pathB).iterator();
+	    List<String> res = new ArrayList<>();
+		return ejercicio3RecFinal(res, it1, it2);
 	}
 
-	private static List<String> ejercicio3RecFinal(List<String> acum, int i, List<String> a, List<String> b) {
+	private static List<String> ejercicio3RecFinal(List<String> res, Iterator<String> it1, Iterator<String> it2) {
 		
-		if (i < a.size() || i < b.size()) {
-			if (i < a.size()) {
-	            acum.add(a.get(i));
-	            if ( i + 1 < a.size()) {
-	            	acum.add(a.get(i + 1));
-	            }
-			}
-			if (i < b.size()) {
-	            acum.add(b.get(i));
-	            if ( i + 1 < b.size()) {
-		            acum.add(b.get(i + 1));
+		if (it1.hasNext() || it2.hasNext()) {
+			if (it1.hasNext()) {
+	            res.add(it1.next());
+	            if (it1.hasNext()) {
+	            	res.add(it1.next());
 	            }
 	        }
-			ejercicio3RecFinal(acum, i + 2, a, b);
+	        if (it2.hasNext()) {
+	            res.add(it2.next());
+	            if (it2.hasNext()) {
+	            	res.add(it2.next());
+	            }
+	        }
+			ejercicio3RecFinal(res, it1, it2);
 		}
-		return acum;
+		return res;
 	}
-
 	
-	//METODO FUNCIONAL
-	public static record Tupla(List<String> l, List<String> a, List<String> b) {
-		public static Tupla first(List<String> a, List<String> b) {
-			return new Tupla(new ArrayList<String>(), a, b);
+	
+	private static record Tupla(List<String> l, Iterator<String> it1, Iterator<String> it2) {
+		private static Tupla first(String pathA, String pathB) {
+			return new Tupla(new ArrayList<>(), Stream2.file(pathA).iterator(), Stream2.file(pathB).iterator());
 		}
 		
-//		public Tupla next() {
-//			
-//		}
+		private Tupla next() {
+			if (it1.hasNext() || it2.hasNext()) {
+				if (it1.hasNext()) {
+		            l.add(it1.next());
+		            if (it1.hasNext()) {
+		            	l.add(it1.next());
+		            }
+		        }
+		        if (it2.hasNext()) {
+		            l.add(it2.next());
+		            if (it2.hasNext()) {
+		            	l.add(it2.next());
+		            }
+		        }
+			}	
+			return this;
+		}
+		
+		public Boolean esCasoBase() {
+			return !(it1.hasNext() || it2.hasNext());
+		}
 	}
 	
-	
+	public static List<String> ejercicio3Funcional(String pathA, String pathB){
+		
+		Tupla t = Stream.iterate(Tupla.first(pathA, pathB), e -> e.next())
+				.filter(e -> e.esCasoBase())
+				.findFirst().get();
+		
+		return t.l();
+	}
+
 }
+	
 
 
 
