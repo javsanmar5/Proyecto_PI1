@@ -1,2 +1,2 @@
 # PI1_javsanmar5
-Primer proyecto de ADDA. Curso 23/24. javsanmar5
+Data structures and algorithm first project. Enjoy it!
